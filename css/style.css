@@ -1,0 +1,9 @@
+img{
+	width: 100%;
+}
+
+.game{
+	display: inline-block;
+	width: 250px;
+	text-align: center;
+}
