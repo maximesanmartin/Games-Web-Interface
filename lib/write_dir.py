@@ -20,5 +20,9 @@ for game in games:
     
     response = requests.get(url.format(game))
     tree = ElementTree.fromstring(response.content)
-    file.write(tree[1][0].text+"\n") # ID
+    try:
+        file.write(tree[1][0].text+"\n") # ID
+    except:
+        pass
+
 file.close()
