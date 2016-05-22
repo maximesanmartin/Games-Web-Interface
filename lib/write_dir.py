@@ -14,14 +14,15 @@ games = os.listdir(rep)
 file = open("../data/ids.txt", "w")
 url = "http://thegamesdb.net/api/GetGame.php?name={}&platform=PC"
 for game in games:
-    print game
     import requests
     from xml.etree import ElementTree
     
     response = requests.get(url.format(game))
     tree = ElementTree.fromstring(response.content)
     try:
-        file.write(tree[1][0].text+"\n") # ID
+        id = tree[1][0].text
+        file.write(id+"\n") # ID
+        print "{}: {}".format(game,id) 
     except:
         pass
 
