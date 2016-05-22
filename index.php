@@ -5,10 +5,10 @@
 </head>
 <body>
 <?php
-	$jeux = array_diff(scandir("samples"),array(".",".."));
-	foreach ($jeux as $jeu) {
-		$xml = simplexml_load_file("http://thegamesdb.net/api/GetGame.php?name=$jeu&platform=PC");
-		$xml = $xml[0];
+	$jeux = fopen("data/ids.txt", "r")  or die("Fichier inexistant");
+	 while (($jeu = fgets($jeux)) !== FALSE){
+	 	$jeu = intval($jeu);
+		$xml = simplexml_load_file("http://thegamesdb.net/api/GetGame.php?id=$jeu&platform=PC");
 		$baseUrlImg = $xml->baseImgUrl;
 		$game = $xml->Game;
 		$name = $game->GameTitle;
